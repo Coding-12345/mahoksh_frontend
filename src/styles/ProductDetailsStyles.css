@@ -48,3 +48,11 @@
 .similar-products .card-img-top {
   height: 300px !important;
 }
+
+.card-img-top{
+  height: 300px;
+}
+
+.m-2{
+  height: fit-content;
+}
