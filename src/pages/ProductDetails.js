@@ -10,11 +10,10 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
-  //initalp details
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
-  //getProduct
+
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
@@ -26,7 +25,7 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-  //get similar product
+
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
@@ -37,6 +36,12 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
+  // Function to calculate the discounted price
+  const calculateDiscountedPrice = (price, discount) => {
+    return (price - (price * discount) / 100).toFixed(2);
+  };
+
   return (
     <Layout>
       <div className="row container product-details">
@@ -52,17 +57,29 @@ const ProductDetails = () => {
         <div className="col-md-6 product-details-info">
           <h1 className="text-center">Product Details</h1>
           <hr />
-          <h6>Name : {product.name}</h6>
-          <h6>Description : {product.description}</h6>
+          <h6>Name: {product.name}</h6>
+          <h6>Description: {product.description}</h6>
           <h6>
-            Price :
-            {product?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
+            Original Price:{" "}
+            <span style={{ textDecoration: "line-through" }}>
+              {product?.price?.toLocaleString("en-US", {
+                style: "currency",
+                currency: "INR",
+              })}
+            </span>
           </h6>
-          <h6>Category : {product?.category?.name}</h6>
-          <button class="btn btn-secondary ms-1">ADD TO CART</button>
+          <h6>
+            Discounted Price:{" "}
+            {calculateDiscountedPrice(product?.price, product?.discount)?.toLocaleString(
+              "en-US",
+              {
+                style: "currency",
+                currency: "INR",
+              }
+            )}
+          </h6>
+          <h6>Category: {product?.category?.name}</h6>
+          <button className="btn btn-secondary ms-1">ADD TO CART</button>
         </div>
       </div>
       <hr />
@@ -83,10 +100,19 @@ const ProductDetails = () => {
                 <div className="card-name-price">
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
+                    <span style={{ textDecoration: "line-through" }}>
+                      {p.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "INR",
+                      })}
+                    </span>{" "}
+                    {calculateDiscountedPrice(p.price, p.discount)?.toLocaleString(
+                      "en-US",
+                      {
+                        style: "currency",
+                        currency: "INR",
+                      }
+                    )}
                   </h5>
                 </div>
                 <p className="card-text ">
@@ -99,19 +125,6 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  {/* <button
-                  className="btn btn-dark ms-1"
-                  onClick={() => {
-                    setCart([...cart, p]);
-                    localStorage.setItem(
-                      "cart",
-                      JSON.stringify([...cart, p])
-                    );
-                    toast.success("Item Added to cart");
-                  }}
-                >
-                  ADD TO CART
-                </button> */}
                 </div>
               </div>
             </div>
