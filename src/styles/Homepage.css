@@ -169,4 +169,121 @@
   color: white;
 }
 
+/* General Responsive Styles */
+@media (max-width: 1200px) {
+  .home-page .card {
+    width: 30rem; /* Adjust width for medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .home-page {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center align items */
+  }
+  
+  .home-page .card {
+    width: 100%; /* Full width on smaller screens */
+  }
+  
+  .filters {
+    width: 100%; /* Full width for filters */
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page h1 {
+    font-size: 2rem; /* Smaller font size for headings */
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .home-page .card {
+    width: 100%; /* Full width for cards */
+  }
+  
+  .home-page .card-price {
+    font-size: 1rem; /* Smaller font size for prices */
+  }
+  
+  .home-page .card-price span:first-of-type {
+    font-size: 1rem; /* Smaller discounted price font size */
+  }
+  
+  .home-page .card-price span:last-of-type {
+    font-size: 0.9rem; /* Smaller original price font size */
+  }
+  
+  .filters h4 {
+    font-size: 1.2rem; /* Smaller font size for filter headings */
+  }
+  
+  .filters {
+    padding: 10px; /* Reduced padding */
+  }
+  
+  .filters button {
+    font-size: 0.9rem; /* Smaller font size for buttons */
+  }
+}
+
+@media (max-width: 576px) {
+  .home-page h1 {
+    font-size: 1.5rem; /* Smaller font size for headings */
+    margin-bottom: 15px; /* Reduced margin */
+  }
+  
+  .home-page .card {
+    width: 100%; /* Full width for cards */
+    margin-bottom: 15px; /* Reduced margin */
+  }
+  
+  .home-page .card-price {
+    font-size: 0.9rem; /* Smaller font size for prices */
+  }
+  
+  .home-page .card-price span:first-of-type {
+    font-size: 0.9rem; /* Smaller discounted price font size */
+  }
+  
+  .home-page .card-price span:last-of-type {
+    font-size: 0.8rem; /* Smaller original price font size */
+  }
+  
+  .filters h4 {
+    font-size: 1rem; /* Smaller font size for filter headings */
+  }
+  
+  .filters {
+    padding: 5px; /* Further reduced padding */
+  }
+  
+  .filters button {
+    font-size: 0.8rem; /* Smaller font size for buttons */
+  }
+  
+  .banner-img {
+    margin-top: 30px; /* Reduced margin for small screens */
+  }
+}
+
+/* Adjustments for the Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px; /* Reduced padding for smaller screens */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* Smaller brand text */
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 0.9rem; /* Smaller nav link text */
+  }
+  
+  .navbar-toggler {
+    border-color: #fbb247; /* Ensure color consistency */
+  }
+}
+
+
 
