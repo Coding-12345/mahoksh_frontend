@@ -15,7 +15,7 @@ const UpdateProduct = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");  
+  const [discount, setDiscount] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
@@ -32,7 +32,7 @@ const UpdateProduct = () => {
       setId(data.product._id);
       setDescription(data.product.description);
       setPrice(data.product.price);
-      setDiscount(data.product.discount || "");  
+      setDiscount(data.product.discount || "");
       setQuantity(data.product.quantity);
       setShipping(data.product.shipping);
       setCategory(data.product.category._id);
@@ -49,7 +49,9 @@ const UpdateProduct = () => {
   // Get all categories
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -71,10 +73,11 @@ const UpdateProduct = () => {
       productData.append("name", name);
       productData.append("description", description);
       productData.append("price", price);
-      productData.append("discount", discount);  // Append discount
+      productData.append("discount", discount); // Append discount
       productData.append("quantity", quantity);
       photo && productData.append("photo", photo);
       productData.append("category", category);
+      console.log(productData);
       const { data } = await axios.put(
         `${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`,
         productData
@@ -94,7 +97,9 @@ const UpdateProduct = () => {
   // Handle delete product
   const handleDelete = async () => {
     try {
-      let answer = window.prompt("Are you sure you want to delete this product?");
+      let answer = window.prompt(
+        "Are you sure you want to delete this product?"
+      );
       if (!answer) return;
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`
